@@ -6,6 +6,12 @@ public class Health : MonoBehaviour
 {
     public int maxHealth;
     int currentHealth;
+
+    public bool freezing = false;
+
+    float lastFreezeDamageTime;   //The last time freeze damage was applied.
+    float freezeDamageFrequency = 3f;  //How often freeze damage should be applied.
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -27,5 +33,14 @@ public class Health : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    void Update()
+    {
+        if(freezing == true && Time.time >= lastFreezeDamageTime + freezeDamageFrequency)
+        {
+            lastFreezeDamageTime = Time.time;
+            currentHealth--;
+        }
     }
 }
