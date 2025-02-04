@@ -6,7 +6,7 @@ public class freezeBar : MonoBehaviour
 {
     bool isInside;
     int freezeprogress;
-    static bool freezing;
+    static public bool freezing;
 
     float lastFreezeProgressTime;   //The last time freeze progress was applied.
     float freezeProgressFrequency = 1f;  //How often freeze progress should be applied.

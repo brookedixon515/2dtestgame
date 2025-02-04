@@ -37,7 +37,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if(freezing == true && Time.time >= lastFreezeDamageTime + freezeDamageFrequency)
+        if(freezeBar.freezing == true && Time.time >= lastFreezeDamageTime + freezeDamageFrequency)
         {
             lastFreezeDamageTime = Time.time;
             currentHealth--;
