@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class freezeBar : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class freezeBar : MonoBehaviour
     float lastFreezeReduceTime;   //The last time freeze reduction was applied.
     float freezeReduceFrequency = 2f;  //How often freeze reduction should be applied.
 
+    public Slider slider;
+
     void Start()
     {
         freezeprogress = 0;
         isInside = false;
+        slider.maxValue = 100;
+        slider.value = freezeprogress;
     }
 
     void Update()
@@ -43,6 +48,8 @@ public class freezeBar : MonoBehaviour
         {
             freezing = false;
         }
+
+        slider.value = freezeprogress;
     }
 
     void OnTriggerStay2D(Collider2D col)

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public int maxHealth;
     int currentHealth;
+    public Slider slider;
+    public GameObject DeathMenu;
 
     public bool freezing = false;
 
@@ -16,15 +19,19 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        slider.maxValue = maxHealth; 
+        slider.value = currentHealth;
     }
 
     // Update is called once per frame
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        slider.value = currentHealth;
 
         if(currentHealth <= 0)
         {
+            Debug.Log("Player has died.");
             Die();
         }
         
@@ -33,6 +40,8 @@ public class Health : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        DeathMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     void Update()
@@ -41,6 +50,7 @@ public class Health : MonoBehaviour
         {
             lastFreezeDamageTime = Time.time;
             currentHealth--;
+            slider.value = currentHealth;
         }
     }
 }
