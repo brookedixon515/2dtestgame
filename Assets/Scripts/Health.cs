@@ -39,7 +39,6 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
         DeathMenu.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -51,6 +50,12 @@ public class Health : MonoBehaviour
             lastFreezeDamageTime = Time.time;
             currentHealth--;
             slider.value = currentHealth;
+
+                if(currentHealth <= 0)
+        {
+            Debug.Log("Player has died.");
+            Die();
+        }
         }
     }
 }
