@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems; 
 
-public class inventorySlot : MonoBehaviour, IDropHandler
+public class InventorySlot : MonoBehaviour, IDropHandler
 {
 
   
@@ -11,8 +11,8 @@ public class inventorySlot : MonoBehaviour, IDropHandler
     {
         if(transform.childCount == 0)
         {
-            inventoryItem InventoryItem = eventData.pointerDrag.GetComponent<inventoryItem>();
-            InventoryItem.parentAfterDrag = transform;
+            InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+            inventoryItem.parentAfterDrag = transform;
         }
     }
   

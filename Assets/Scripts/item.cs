@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "Scriptable object/Item")]
 
-public class item : ScriptableObject
+public class Item : ScriptableObject
 {
 
 
