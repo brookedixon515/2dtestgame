@@ -51,11 +51,11 @@ public class Health : MonoBehaviour
             currentHealth--;
             slider.value = currentHealth;
 
-                if(currentHealth <= 0)
-        {
-            Debug.Log("Player has died.");
-            Die();
-        }
+            if(currentHealth <= 0)
+            {
+                Debug.Log("Player has died.");
+                Die();
+            }
         }
     }
 }

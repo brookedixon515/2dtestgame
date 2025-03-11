@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class ItemFunctionality : MonoBehaviour
 {
-    void Update()
-    {
-     //   Item item = InventoryManager.instance.GetSelectedItem(false);
-    }
+
+    
+    // void Update()
+    // {
+    //     InventorySlot slot = InventoryManager.inventorySlots[selectedSlot];
+    //     InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+    //     if (itemInSlot != null)
+    //     {
+
+    //     }
+    // }
 }

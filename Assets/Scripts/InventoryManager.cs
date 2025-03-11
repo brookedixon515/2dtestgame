@@ -11,8 +11,10 @@ public class InventoryManager : MonoBehaviour
     public int maxStackedItems = 64;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
-
+    public BoxCollider2D hitbox;
     int selectedSlot = -1;
+
+    private GameObject sword;
 
     private void Awake()
     {
@@ -26,17 +28,18 @@ public class InventoryManager : MonoBehaviour
         {
             AddItem(item);
         }
+
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeSelectedSlot(1);
+            ChangeSelectedSlot(0);
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeSelectedSlot(0);
+            ChangeSelectedSlot(1);
         }
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -46,6 +49,32 @@ public class InventoryManager : MonoBehaviour
         {
             ChangeSelectedSlot(3);
         }
+    
+       
+        InventorySlot slot = inventorySlots[selectedSlot];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        
+        if (itemInSlot != null && itemInSlot.item.name == "Sword" && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("attack done");
+            Invoke("ActivateHitbox", 0.2f); 
+            Invoke("DeactivateHitbox", 0.4f); 
+        }
+
+         if (itemInSlot != null && itemInSlot.item.name == "Pickaxe" && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("mining done");
+        }
+    }
+    
+    void ActivateHitbox()
+    {
+        hitbox.gameObject.SetActive(true);
+    }
+
+    void DeactivateHitbox()
+    {
+        hitbox.gameObject.SetActive(false);
     }
 
     void ChangeSelectedSlot(int newValue)
@@ -119,3 +148,4 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 }
+    
