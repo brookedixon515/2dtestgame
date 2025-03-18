@@ -54,9 +54,19 @@ public class freezeBar : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
         {
-            if(col.gameObject.tag == "inside")
+            if(col.gameObject.tag == "Inside")
             {
                 isInside = true;
             }
         }
+
+    void OnTriggerExit2D(Collider2D col)
+        {
+            if(col.gameObject.tag == "Inside")
+            {
+                isInside = false;
+            }
+        }
+    
+    
 }
