@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
     public Slider slider;
     public GameObject DeathMenu;
 
@@ -23,6 +23,15 @@ public class Health : MonoBehaviour
         slider.value = currentHealth;
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+          if(other.gameObject.tag == "Enemy")
+        {
+            TakeDamage(1);
+            Debug.Log("damage taken");
+        }
+    }
+
     // Update is called once per frame
     public void TakeDamage(int damage)
     {
@@ -34,7 +43,12 @@ public class Health : MonoBehaviour
             Debug.Log("Player has died.");
             Die();
         }
-        
+    }
+
+    public void Healing(int healing)
+    {
+        currentHealth += healing;
+        slider.value = currentHealth;
     }
 
     void Die()
@@ -45,6 +59,11 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+
+          if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
         if(freezeBar.freezing == true && Time.time >= lastFreezeDamageTime + freezeDamageFrequency)
         {
             lastFreezeDamageTime = Time.time;

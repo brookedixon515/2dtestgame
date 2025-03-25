@@ -11,6 +11,8 @@ public class BasicEnemy : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
     public int damage;
+    public GameObject drop;
+    public GameObject enemy;
 
     void Start()
     {
@@ -22,26 +24,24 @@ public class BasicEnemy : MonoBehaviour
         player = GameObject.FindWithTag("Player");
     }
    
-    void Update()
-    {
-        agent.SetDestination(player.transform.position);
-    }
+
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Damage")
         {
-            TakeDamage(5);
+            doDamage(5);
             Debug.Log("Enemy has been attacked.");
         }
 
         if(other.gameObject.tag == "Player")
         {
-            Health.TakeDamage(damage);
+        agent.SetDestination(player.transform.position);
         }
+
     }
 
-    public void TakeDamage(int damage)
+    public void doDamage(int damage)
     {
         currentHealth -= damage;
 
@@ -55,7 +55,9 @@ public class BasicEnemy : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        drop.transform.parent = null;
+        enemy.SetActive(false);
+        drop.SetActive(true);
     }
 
     

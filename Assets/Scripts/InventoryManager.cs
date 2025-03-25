@@ -65,6 +65,13 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log("mining done");
         }
+
+         if (itemInSlot != null && itemInSlot.item.name == "Meat" && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("healing done");
+            GameObject.FindWithTag("Player").GetComponent<Health>().Healing(2);
+            GetSelectedItem(itemInSlot);
+        }
     }
     
     void ActivateHitbox()
