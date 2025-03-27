@@ -7,21 +7,17 @@ public class DayTimer : MonoBehaviour
 {
     public Text text;
     public float seconds;
+    public GameObject winmenu;
 
 
     void Start()
     {
         seconds = 0;
-        //StartCoroutine(timer());
     }
 
     void Update()
     {
         dayTimer();
-        // if(seconds == 180)
-        // {
-        //     // you win! screen here
-        // }
     }
 
     private void dayTimer()
@@ -39,25 +35,8 @@ public class DayTimer : MonoBehaviour
         else
         {
             // Win screen here
+             winmenu.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
-    // private IEnumerator timer()
-    // {
-    //     text.text = "Day 1";
-    //     while(seconds < 180)
-    //     {
-    //         yield return new WaitForSeconds(1f);
-    //         seconds++;
-    //         if(seconds == 60)
-    //         {
-    //             text.text = "Day 2";
-    //         }
-    //         else if(seconds == 120)
-    //         {
-               
-    //             text.text = "Day 3";
-    //         }
-    //     }
-
-    // }
 }
